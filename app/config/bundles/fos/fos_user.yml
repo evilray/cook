@@ -1,0 +1,12 @@
+fos_user:
+    db_driver:      orm
+    firewall_name:  main
+    user_class:     UserBundle\Entity\User
+
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+    from_email:
+        address:     noreply@liveinsocial.ru
+        sender_name: liveinsocial

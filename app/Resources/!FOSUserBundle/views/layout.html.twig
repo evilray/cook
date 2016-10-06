@@ -1,0 +1,16 @@
+{% extends 'AppBundle:Front:layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }}" style="padding-top: 20px; padding-bottom: 20px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {{ block('fos_user_content') }}
+{% endblock %}
+

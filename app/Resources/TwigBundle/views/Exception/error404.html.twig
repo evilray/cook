@@ -1,0 +1,42 @@
+{% extends 'AppBundle:Front:layout.html.twig' %}
+{% block title %}
+    404 — страница не найдена | liveinsocial.ru
+{% endblock %}
+{% block body -%}
+    <style type="text/css" xmlns="http://www.w3.org/1999/html">
+        .ups {
+
+            font-size: 100px;
+
+        }
+    </style>
+    <table width="100%" height="100%">
+        <tr height="30%">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td width="30%">&nbsp;</td>
+            <td width="100" align="top">
+                <div class="ups">:-(</div>
+            </td>
+            <td width="20%">
+                <h1>Страница не найдена</h1>
+                <p>Страница которую вы искали отсутствует.</p>
+                <p>Возможно, вы ошиблись при наборе адреса, или перешли по устаревшей ссылке.</p>
+                <p>Попробуйте начать <a href="/">сначала</a>.</p>
+                <p>Если вы уверены, что страница отсутствует по нашей вине — напишите нам на <a
+                            href="mailto:support@liveinsocial.ru">support@liveinsocial.ru</a>.</p>
+            </td>
+            <td width="40%">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+{%- endblock body %}

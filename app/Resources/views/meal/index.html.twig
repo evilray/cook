@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Meal list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meal in meals %}
+            <tr>
+                <td><a href="{{ path('meal_show', { 'id': meal.id }) }}">{{ meal.id }}</a></td>
+                <td>{{ meal.name }}</td>
+                <td>{{ meal.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('meal_show', { 'id': meal.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('meal_edit', { 'id': meal.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('meal_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

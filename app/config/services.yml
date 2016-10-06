@@ -1,0 +1,64 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app_user.registration_complete:
+        class: AppBundle\Listener\RegistrationConfirmListener
+        arguments: ["@router", "@event_dispatcher"]
+        tags:
+            - { name: kernel.event_subscriber }
+    app.form.registration:
+        class: AppBundle\Form\Type\RegistrationFormType
+        arguments: [UserBundle\Entity\User]
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    app.form.profile:
+        class: AppBundle\Form\Type\ProfileFormType
+        arguments: [UserBundle\Entity\User]
+        tags:
+            - { name: form.type, alias: app_user_profile }
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+    twig.plural_extension:
+        class: AppBundle\Twig\TransPlural
+        arguments: ["@translator.default"]
+        tags:
+            - { name: twig.extension }
+    printcut.twig_extension:
+        class: AppBundle\Twig\PrintCutExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+    label.twig_extension:
+        class: AppBundle\Twig\LabelExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+    authentication_handler:
+        class: AppBundle\Handler\AuthenticationHandler
+
+    #security.access.coupon_voter:
+        #class: AppBundle\Security\Authorization\Voter\CouponVoter
+        #public: false
+        #tags:
+        #  - { name: security.voter }
+
+

@@ -1,0 +1,76 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-title">Профиль {{ user.username }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }}" style="padding-top: 20px; padding-bottom: 20px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a href="#favorites" aria-controls="favorites" role="tab"
+                                   data-toggle="tab">Избранное</a></li>
+        <li role="presentation"><a href="#main" aria-controls="main" role="tab"
+                                                  data-toggle="tab">Профиль</a></li>
+
+        <li role="presentation"><a href="#social" aria-controls="social" role="tab"
+                                   data-toggle="tab">Социальные сети</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="favorites">
+            <div class="row" style="padding-top: 20px;">
+            {% for coupon in user.coupons if coupon.action.isActive() %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <a data-id="{{ coupon.action.id }}" class="lis-action"
+                       href="{{ path('product_show_front', {'slug': coupon.action.slug}) }}">
+                        {% if(coupon.action.photos.first) %}
+                            <img width="200" src="{{ coupon.action.photos.first.tmbName }}">
+                        {% endif %}
+                        <b><i class="fa fa-users"></i> {{ coupon.action.views }}</b>
+                        <span>
+                        {{ coupon.action.title }}
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+                </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="main">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="fos_user_user_show">
+                        <p>{#{ 'profile.show.username'|trans }}: {{ user.username }#}</p>
+                        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}">Редактировать</a>
+                    <a class="btn btn-default" href="{{ path('fos_user_change_password') }}">Изменить пароль</a>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="social">
+
+
+
+            
+            
+        </div>
+    </div>
+
+
+</div>

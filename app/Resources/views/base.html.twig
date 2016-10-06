@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% block htmlTag %}<html lang="en">{% endblock %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/css/style.css" rel="stylesheet">
+        <title>{% block title %}Кононенко Надежда Сергеевна{% endblock %} </title>
+
+
+
+    {% block stylesheets %}{% endblock %}
+
+{% block head %}{% endblock %}
+
+</head>
+<body>
+<div class="header"></div>
+<div class="menu">
+    <ul class="top-menu">
+        <li><a href="/">Посты</a></li>
+        <li><a href="#">Галерея</a></li>
+        <li><a href="#">Контакты</a></li>
+    </ul>
+    {% block navigation %}{% endblock %}
+</div>
+
+
+{% block container %}
+    {% block body %}
+    {% endblock %}
+{% endblock %}
+<div class="footer">
+    <div class="menu">
+        <ul class="top-menu">
+            <li><a href="#">Посты</a></li>
+            <li><a href="#">Галерея</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+
+    </div>
+
+    <div class="header"></div>
+</div>
+{% block javascripts %}{% endblock %}
+
+</body>
+
+</html>
+

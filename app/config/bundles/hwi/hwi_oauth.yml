@@ -1,0 +1,56 @@
+hwi_oauth:
+    http_client:
+        timeout:       10
+        verify_peer:   false
+        ignore_errors: true
+        max_redirects: 5
+    #this is my custom user provider, created from FOSUBUserProvider - will manage the
+    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
+    #and also, the connecting part (get the token and the user_id)
+    connect:
+        account_connector: my_user_provider
+        confirmation: true
+        account_connector: hwi_oauth.user.provider.fosub_bridge
+        #registration_form_handler: hwi_oauth.registration.form.handler.fosub_bridge
+        #registration_form: fos_user.registration.form
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            facebook: facebook_id
+            vkontakte: vkontakte_id
+            yandex: yandex_id
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           "500275120169609"
+            client_secret:       "ad20c1fbf601f92509b56f69bfd54f27"
+            scope:               "email, public_profile"
+        vkontakte:
+            type:                vkontakte
+            client_id:           4521974
+            client_secret:       Vfu5wdTepMpFH0BhhKnB
+            scope:               "user, email"
+        yandex:
+            type:                yandex
+            client_id:           fb8c1c9b87fb4ef7b145d3bc0f877293
+            client_secret:       a4e32ea1a01a42f580d0a847e6c46563
+            scope:               "user, email"
+        odnoklassniki:
+            type:                odnoklassniki
+            client_id:           1247805696
+            client_secret:       B2236E9020986E6C03CF4542
+            #scope:               "user, email"
+            options:
+                application_key: CBACABGLEBABABABA
+        mailru:
+            type:                mailru
+            client_id:           739691
+            client_secret:       dafa8ba6991d0290bd7c8f433ff6e4bc
+        google:
+            type:                google
+            client_id:           591447364207-j37s6otugupgs0g5kja1ond2uviu29fp.apps.googleusercontent.com
+            client_secret:       RXFhJxIwvaIwr61RGH2JQ361
+            scope:               "email profile"

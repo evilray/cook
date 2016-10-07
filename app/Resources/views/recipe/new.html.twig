@@ -7,7 +7,7 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-    <input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('gallery') }}" multiple />
+    <input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple />
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 

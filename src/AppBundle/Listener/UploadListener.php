@@ -32,7 +32,7 @@ class UploadListener
         $file = $event->getFile();
         $response = $event->getResponse();
         $request = $event->getRequest();
-        $recipeId = $request->get('product');
+        $recipeId = $request->get('recipe');
 
 
         $imagine = new \Imagine\Gd\Imagine();

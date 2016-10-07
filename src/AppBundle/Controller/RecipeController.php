@@ -44,15 +44,22 @@ class RecipeController extends Controller
     public function newAction(Request $request)
     {
         $recipe = new Recipe();
+
         $user = $this->getUser();
         $recipe->setOwner($user);
-        $form = $this->createForm('AppBundle\Form\RecipeType', $recipe);
+	    $recipe->setName('Новый рецепт');
+
+	    $em = $this->getDoctrine()->getManager();
+	    $em->persist($recipe);
+	    $em->flush();
+
+	    $form = $this->createForm('AppBundle\Form\RecipeType', $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($recipe);
-            $em->flush();
+	        $em->persist($recipe);
+	        $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('id' => $recipe->getId()));
         }

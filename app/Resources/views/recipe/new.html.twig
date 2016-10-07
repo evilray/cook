@@ -3,8 +3,11 @@
 {% block body %}
     <h1>Recipe creation</h1>
 
+    {{ oneup_uploader_endpoint('gallery') }}
+
     {{ form_start(form) }}
         {{ form_widget(form) }}
+    <input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('gallery') }}" multiple />
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -13,4 +16,18 @@
             <a href="{{ path('recipe_index') }}">Back to the list</a>
         </li>
     </ul>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="js/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="js/jquery.fileupload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#fileupload').fileupload({});
+        });
+    </script>
+
+
+
 {% endblock %}

@@ -153,3 +153,9 @@ fos_user:
                 sender_name:    "Liveinsocial"
             enabled:    false # change to true for required email confirmation
             template:   FOSUserBundle:Registration:email.txt.twig
+
+oneup_uploader:
+    mappings:
+        gallery:
+            frontend: blueimp # or any uploader you use in the frontend
+            root_folder: true

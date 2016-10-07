@@ -2,3 +2,4 @@
 /var/*
 .idea/
 ./composer.lock
+/web/uploads/*.*

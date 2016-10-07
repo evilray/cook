@@ -3,7 +3,7 @@ namespace AppBundle\Listener;
 
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Product;
+use AppBundle\Entity\Recipe;
 use AppBundle\Entity\Photo;
 use Imagine\Image\ImageInterface;
 
@@ -32,7 +32,7 @@ class UploadListener
         $file = $event->getFile();
         $response = $event->getResponse();
         $request = $event->getRequest();
-        $productId = $request->get('product');
+        $recipeId = $request->get('product');
 
 
         $imagine = new \Imagine\Gd\Imagine();
@@ -50,24 +50,23 @@ class UploadListener
                 'resampling-filter' => ImageInterface::FILTER_QUADRATIC,
             ]);
 
-        $object = new Photo();
-        $object->setImageName($this->getWebPath($file->getPathName()));
-        $object->setTmbName($this->getWebPath($tmbName));
+        $photo = new Photo();
+        $photo->setImage($this->getWebPath($file->getPathName()));
+        $photo->setThumbnail($this->getWebPath($tmbName));
 
-        if ($productId) {
-            $product = $this->manager->getRepository('AppBundle:Product')->find($productId);
-            $product->addPhoto($object);
-            $this->manager->persist($product);
+        if ($recipeId) {
+            $recipe = $this->manager->getRepository('AppBundle:Recipe')->find($recipeId);
+	        $photo->setRecipe($recipe);
         }
 
-        $this->manager->persist($object);
+        $this->manager->persist($photo);
         $this->manager->flush();
 
         $response['files'] = [
             [
-                'url' => $object->getImageName(),
-                'thumbnailUrl' => $object->getTmbName(),
-                'id' => $object->getId(),
+                'url' => $photo->getImage(),
+                'thumbnailUrl' => $photo->getThumbnail(),
+                'id' => $photo->getId(),
             ],
         ];
 

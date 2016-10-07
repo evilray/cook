@@ -27,7 +27,11 @@ class RecipeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $recipes = $em->getRepository('AppBundle:Recipe')->findAll();
+        $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
+
+        ['isDraft'=>false],
+        ['id'=>'DESC']
+        );
 
         return $this->render('recipe/index.html.twig', array(
             'recipes' => $recipes,

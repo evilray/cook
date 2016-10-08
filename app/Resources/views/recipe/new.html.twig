@@ -6,10 +6,13 @@
     {{ oneup_uploader_endpoint('gallery') }}
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-    <input id="fileupload" type="file" name="files[]" data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple />
-        <input type="submit" value="Create" />
+    {{ form_widget(form) }}
+    <input id="fileupload" type="file" name="files[]"
+           data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/>
+    <input type="submit" value="Create"/>
     {{ form_end(form) }}
+
+    <div class="progress-bar"></div>
 
     <ul>
         <li>
@@ -17,17 +20,15 @@
         </li>
     </ul>
 
+
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/vendor/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.iframe-transport.js"></script>
     <script type="text/javascript" src="js/jquery.fileupload.js"></script>
     <script type="text/javascript">
-        $(document).ready(function()
-        {
+        $(document).ready(function () {
             $('#fileupload').fileupload({});
         });
     </script>
-
-
 
 {% endblock %}

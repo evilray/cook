@@ -51,19 +51,19 @@ class RecipeController extends Controller
 
         $user = $this->getUser();
         $recipe->setOwner($user);
-	    $recipe->setName('Новый рецепт');
+        $recipe->setName('Новый рецепт');
 
-	    $em = $this->getDoctrine()->getManager();
-	    $em->persist($recipe);
-	    $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($recipe);
+        $em->flush();
 
-	    $form = $this->createForm('AppBundle\Form\RecipeType', $recipe);
+        $form = $this->createForm('AppBundle\Form\RecipeType', $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-	        $em->persist($recipe);
-	        $em->flush();
+            $em->persist($recipe);
+            $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('id' => $recipe->getId()));
         }
@@ -72,8 +72,11 @@ class RecipeController extends Controller
             'recipe' => $recipe,
             'form' => $form->createView(),
         ));
+
     }
 
+
+    
     /**
      * Finds and displays a Recipe entity.
      *
@@ -155,3 +158,4 @@ class RecipeController extends Controller
         ;
     }
 }
+

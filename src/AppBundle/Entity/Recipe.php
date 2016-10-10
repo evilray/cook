@@ -295,6 +295,7 @@ class Recipe {
 	public function getUpdateAt() {
 		return $this->updateAt;
 	}
+		
 
 	/**
 	 * Add category

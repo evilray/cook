@@ -10,6 +10,7 @@ use AppBundle\Entity\Recipe;
 use AppBundle\Form\RecipeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
 /**
  * Recipe controller.
  *
@@ -17,6 +18,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class RecipeController extends Controller
 {
+
+   
     /**
      * Lists all Recipe entities.
      *
@@ -37,6 +40,29 @@ class RecipeController extends Controller
             'recipes' => $recipes,
         ));
     }
+
+    /**
+     * Lists all Recipe entities.
+     *
+     * @Route ("/drafts", name="draft")
+     * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function draftAction()
+     {
+         $em = $this->getDoctrine()->getManager();
+
+         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
+
+             ['isDraft'=>true],
+             ['id'=>'DESC']
+         );
+
+         return $this->render('recipe/index.html.twig', array(
+             'recipes' => $recipes,
+         ));
+     }
+    
     /**
      * Creates a new Recipe entity.
      *
@@ -156,5 +182,7 @@ class RecipeController extends Controller
             ->getForm()
         ;
     }
+
+
 }
 

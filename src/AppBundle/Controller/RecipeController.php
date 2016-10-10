@@ -37,7 +37,6 @@ class RecipeController extends Controller
             'recipes' => $recipes,
         ));
     }
-
     /**
      * Creates a new Recipe entity.
      *

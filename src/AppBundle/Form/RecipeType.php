@@ -26,6 +26,7 @@ class RecipeType extends AbstractType
             ->add('isDraft', CheckboxType::class,array(
                 'label' => 'Опубликовать рецепт',
                 'required' => false,))
+            
         ;
     }
     

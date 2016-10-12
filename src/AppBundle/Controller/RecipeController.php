@@ -105,7 +105,7 @@ class RecipeController extends Controller
     /**
      * Finds and displays a Recipe entity.
      *
-     * @Route("/recipe/{id}", name="recipe_show")
+     * @Route("/recipe/{slug}", name="recipe_show")
      * @Method("GET")
      */
     public function showAction(Recipe $recipe)

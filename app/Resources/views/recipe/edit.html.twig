@@ -6,6 +6,8 @@
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
     <input type="submit" value="Edit"/>
+    <input id="fileupload" type="file" name="files[]"
+           data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/>
     {{ form_end(edit_form) }}
 
     <a href="{{ path('recipe_index') }}">Back to the list</a>
@@ -17,4 +19,14 @@
     {{ form_end(delete_form) }}
 
 
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#fileupload').fileupload({});
+        });
+    </script>
 {% endblock %}

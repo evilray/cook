@@ -2,7 +2,9 @@
 namespace AppBundle\Twig; 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator; 
 use Twig_Extension; 
- 
+
+
+//  На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
 class TransPlural extends Twig_Extension 
 { 
     protected $translator; 
@@ -33,8 +35,7 @@ class TransPlural extends Twig_Extension
             ? 1 
             : 2 
         ); 
-        //this if condition here because on some servers $this->translator->tran
-        //was returning wrong strings
+
         if (strpos($translated,"{")===false) 
         { 
             $translated_array = explode("|", $translated); 

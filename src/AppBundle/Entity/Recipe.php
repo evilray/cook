@@ -40,7 +40,7 @@ class Recipe {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="description", type="string", length=255, nullable=true)
+	 * @ORM\Column(name="description", type="text", nullable=true)
 	 */
 	private $description;
 
@@ -104,6 +104,14 @@ class Recipe {
 	 * @ORM\Column(name="isDraft", type="boolean")
 	 */
 	private $isDraft = true;
+
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="shortDescription", type="text", nullable=true)
+	 */
+	private $shortDescription;
 
 	public function __construct() {
 		$this->categories  = new ArrayCollection();
@@ -422,5 +430,23 @@ class Recipe {
 
 		return $this;
 	}
+
+    /**
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param string $shortDescription
+     * @return Recipe
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+        return $this;
+    }
 
 }

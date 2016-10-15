@@ -18,6 +18,7 @@ class RecipeType extends AbstractType
         $builder
             ->add('name')
             ->add('slug')
+            ->add('shortDescription')
             ->add('description')
             ->add('duration')
             ->add('portions')
@@ -26,7 +27,7 @@ class RecipeType extends AbstractType
             ->add('isDraft', CheckboxType::class,array(
                 'label' => 'Опубликовать рецепт',
                 'required' => false,))
-            
+
         ;
     }
     

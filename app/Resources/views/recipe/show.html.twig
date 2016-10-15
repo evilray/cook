@@ -1,59 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div><h1>{{ recipe.name }}</h1></div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- 33 KB -->
+    <div class="body">
+        <div><h1>{{ recipe.name }}</h1></div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- 33 KB -->
 
-    <!-- fotorama.css & fotorama.js. -->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+        <!-- fotorama.css & fotorama.js. -->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
 
 
-    <div class="fotorama"
-         data-width="800"
-         data-height="600"
-         data-nav="thumbs"
-         data-autoplay="true">
-        {% for photo in recipe.photos %}
-            <img src="{{ photo.image }}"/>
-        {% endfor %}
+        <div class="fotorama"
+             data-width="600"
+             data-height="400"
+             data-nav="thumbs"
+             data-autoplay="true">
+            {% for photo in recipe.photos %}
+                <img src="{{ photo.image }}"/>
+            {% endfor %}
+        </div>
+
+
+        <div class="line">
+           Время приготовления: {{ recipe.duration }}
+           На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
+        </div>
+
+        <div>Список ингридиентов</div>
+
+
+        <div class="recipe">{{ recipe.description|raw }}</div>
+
+
+
+        <th></th>
+        <td></td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Updateat</th>
+            <td>{% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        </tbody>
+        </table>
+
+
+        <ul>
+            <li>
+                <a href="{{ path('recipe_index') }}">Back to the list</a>
+            </li>
+            <li>
+                <a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
     </div>
-
-
-
-
-
-
-    <p> {{ recipe.description }}</p>
-
-
-    {{ recipe.duration }}
-
-    <th>Portions</th>
-    <td>{{ recipe.portions }}</td>
-    </tr>
-    <tr>
-        <th>Createdat</th>
-        <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-    </tr>
-    <tr>
-        <th>Updateat</th>
-        <td>{% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-    </tr>
-    </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('recipe_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

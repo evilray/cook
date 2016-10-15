@@ -24,7 +24,7 @@
                 <td>{{ recipe.name }}</td>
                 <td>{% if (recipe.photos[0] is defined) %}  <img src="{{ recipe.photos[0].thumbnail }}"/>  {% endif %}
                 </td>
-                <td>{{ recipe.description }}</td>
+                <td>{{ recipe.description|raw }}</td>
                 <td>{{ recipe.duration }}</td>
                 <td>{{ recipe.portions }}</td>
                 <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>

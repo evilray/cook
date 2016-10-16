@@ -20,25 +20,24 @@
             {% endfor %}
         </div>
 
+        <div class="shortDescription">{{ recipe.shortDescription|raw }}</div>
 
         <div class="line">
             Время приготовления: {{ recipe.duration }}
             На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
         </div>
 
-        <div class="line-ing">Список ингридиентов</div>
+        <div class="line-ing">Список ингридиентов<div>Описание</div></div>
 
 
         <div class="recipe">{{ recipe.description|raw }}</div>
 
 
+        Createdat
+        {% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d') }}{% endif %}
 
-            Createdat
-            {% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}
-
-            Updateat
-            {% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-
+        Updateat
+        {% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d') }}{% endif %}</td>
 
 
         <div class="back"><a href="{{ path('recipe_index') }}">Back to the list</a></div>

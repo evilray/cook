@@ -7,13 +7,13 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Название рецепта</th>
             <th>Slug</th>
-            <th>Description</th>
-            <th>Duration</th>
-            <th>Portions</th>
-            <th>Createdat</th>
-            <th>Updateat</th>
+            <th>Описание</th>
+            <th>Время приготовления</th>
+            <th>Количество порций</th>
+            <th>Дата создания</th>
+            <th>Дата обновления</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -24,11 +24,11 @@
                 <td>{{ recipe.name }}</td>
                 <td>{% if (recipe.photos[0] is defined) %}  <img src="{{ recipe.photos[0].thumbnail }}"/>  {% endif %}
                 </td>
-                <td>{{ recipe.description|raw }}</td>
+                <td>{{ recipe.shortDescription|raw }}</td>
                 <td>{{ recipe.duration }}</td>
                 <td>{{ recipe.portions }}</td>
-                <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>

@@ -92,6 +92,8 @@ textarea.form-control {
 }
 
 .line {
+    margin-top: 20px;
+    padding: 15px;
     border-top-width: 1px;
     border-top-style: solid;
     border-bottom-width: 1px;
@@ -99,3 +101,8 @@ textarea.form-control {
 
 }
 
+.line-ing {
+    padding: 15px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}

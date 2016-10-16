@@ -22,44 +22,32 @@
 
 
         <div class="line">
-           Время приготовления: {{ recipe.duration }}
-           На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
+            Время приготовления: {{ recipe.duration }}
+            На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
         </div>
 
-        <div>Список ингридиентов</div>
+        <div class="line-ing">Список ингридиентов</div>
 
 
         <div class="recipe">{{ recipe.description|raw }}</div>
 
 
 
-        <th></th>
-        <td></td>
-        </tr>
-        <tr>
-            <th>Createdat</th>
-            <td>{% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Updateat</th>
-            <td>{% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-        </tr>
-        </tbody>
-        </table>
+            Createdat
+            {% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d H:i:s') }}{% endif %}
+
+            Updateat
+            {% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
 
 
-        <ul>
-            <li>
-                <a href="{{ path('recipe_index') }}">Back to the list</a>
-            </li>
-            <li>
-                <a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Edit</a>
-            </li>
-            <li>
-                {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-                {{ form_end(delete_form) }}
-            </li>
-        </ul>
+
+        <div class="back"><a href="{{ path('recipe_index') }}">Back to the list</a></div>
+
+        <div class="edit"><a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Edit</a></div>
+
+        {{ form_start(delete_form) }}
+        <div class="delete"><input type="submit" value="Delete"></div>
+        {{ form_end(delete_form) }}
+
     </div>
 {% endblock %}

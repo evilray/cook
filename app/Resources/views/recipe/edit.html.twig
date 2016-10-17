@@ -1,32 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Recipe edit</h1>
+    <div class="body">
+        <h1>Изменение рецепта</h1>
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit"/>
-    <input id="fileupload" type="file" name="files[]"
-           data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/>
-    {{ form_end(edit_form) }}
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <p><input type="submit" value="Сохранить"/></p>
+        <p><input id="fileupload" type="file" name="files[]"
+                  data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/></p>
+        {{ form_end(edit_form) }}
 
-    <a href="{{ path('recipe_index') }}">Back to the list</a>
+        <p><a href="{{ path('recipe_index') }}">Вернуться к списку</a></p>
+
+        <p><a href="{{ path('recipe_show', { 'slug': recipe.slug }) }}">Просмотр</a></p>
+
+        {{ form_start(delete_form) }}
+        <p><input type="submit" value="Удалить"></p>
+        {{ form_end(delete_form) }}
 
 
-
-    {{ form_start(delete_form) }}
-    <input type="submit" value="Delete">
-    {{ form_end(delete_form) }}
-
-
-
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#fileupload').fileupload({});
-        });
-    </script>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
+        <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#fileupload').fileupload({});
+            });
+        </script>
+    </div>
 {% endblock %}

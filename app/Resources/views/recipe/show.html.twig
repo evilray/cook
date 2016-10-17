@@ -3,49 +3,54 @@
 {% block body %}
     <div class="body">
         <div><h1>{{ recipe.name }}</h1></div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- 33 KB -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
         <!-- fotorama.css & fotorama.js. -->
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
+        <div>
+            <div class="fotorama"
+                 data-width="600"
+                 data-height="400"
+                 data-nav="thumbs"
+                 data-autoplay="true">
+                {% for photo in recipe.photos %}
+                    <img src="{{ photo.image }}"/>
+                {% endfor %}
 
-        <div class="fotorama"
-             data-width="600"
-             data-height="400"
-             data-nav="thumbs"
-             data-autoplay="true">
-            {% for photo in recipe.photos %}
-                <img src="{{ photo.image }}"/>
-            {% endfor %}
+            </div>
+
+            <div class="shortDescription">{{ recipe.shortDescription|raw }}</div>
+        </div>
+        <div class="line">
+            <span class="duration">Время приготовления: {{ recipe.duration }}</span>
+            <span>На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}</span>
         </div>
 
-        <div class="shortDescription">{{ recipe.shortDescription|raw }}</div>
+        <div class="line-ing">
+            <span class="duration">Список ингридиентов</span>
+            <span class="description">Описание</span>
+        </div>
+
+        <div>
+            <div class="recipe">{{ recipe.description|raw }}</div>
+        </div>
 
         <div class="line">
-            Время приготовления: {{ recipe.duration }}
-            На {{ recipe.portions }} {{ 'порция|порции|порций'|transplural(recipe.portions) }}
+           <span class="duration"> Создано
+               {% if recipe.createdAt %}{{ recipe.createdAt|date('d-m-Y') }}{% endif %}
+            </span>
+            Обнавлено
+            {% if recipe.updateAt %}{{ recipe.updateAt|date('d-m-Y') }}{% endif %}
         </div>
 
-        <div class="line-ing">Список ингридиентов<div>Описание</div></div>
+        <p><a href="{{ path('recipe_index') }}">Вернуться к списку</a></p>
 
-
-        <div class="recipe">{{ recipe.description|raw }}</div>
-
-
-        Createdat
-        {% if recipe.createdAt %}{{ recipe.createdAt|date('Y-m-d') }}{% endif %}
-
-        Updateat
-        {% if recipe.updateAt %}{{ recipe.updateAt|date('Y-m-d') }}{% endif %}</td>
-
-
-        <div class="back"><a href="{{ path('recipe_index') }}">Back to the list</a></div>
-
-        <div class="edit"><a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Edit</a></div>
+        <p><a href="{{ path('recipe_edit', { 'id': recipe.id }) }}">Редактировать</a></p>
 
         {{ form_start(delete_form) }}
-        <div class="delete"><input type="submit" value="Delete"></div>
+        <div class="delete"><input type="submit" value="Удалить"></div>
         {{ form_end(delete_form) }}
 
     </div>

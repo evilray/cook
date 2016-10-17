@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <h1>Recipe list</h1>
 
     <table>
@@ -44,15 +45,9 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('recipe_new') }}">Create a new entry</a>
-        </li>
-    </ul>
-    <ul>
-        <li>
-            <a href="{{ path('draft') }}">Черновики</a>
-        </li>
-    </ul>
+
+            <p><a href="{{ path('recipe_new') }}">Добавить рецепт</a></p>
+
+            <p><a href="{{ path('draft') }}">Черновики</a></p>
 
 {% endblock %}

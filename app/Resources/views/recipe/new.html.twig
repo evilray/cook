@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Recipe creation</h1>
+    <div class="body">
+        <h1>Записать новый рецепт</h1>
 
-    {{ oneup_uploader_endpoint('gallery') }}
+        {{ oneup_uploader_endpoint('gallery') }}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input id="fileupload" type="file" name="files[]"
-           data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/>
-    <input type="submit" value="Create"/>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input id="fileupload" type="file" name="files[]"
+               data-url="{{ oneup_uploader_endpoint('gallery') }}?recipe={{ recipe.id }}" multiple/>
+        <input type="submit" value="Создать"/>
+        {{ form_end(form) }}
 
-    <div class="progress-bar"></div>
-
-    <ul>
-        <li>
-            <a href="{{ path('recipe_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="progress-bar"></div>
 
 
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#fileupload').fileupload({});
-        });
-    </script>
+        <p><a href="{{ path('recipe_index') }}">Вернуться к списку</a></p>
 
+
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
+        <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#fileupload').fileupload({});
+            });
+        </script>
+    </div>
 {% endblock %}

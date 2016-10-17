@@ -10,18 +10,20 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
         <div>
-            <div class="fotorama"
-                 data-width="600"
-                 data-height="400"
-                 data-nav="thumbs"
-                 data-autoplay="true">
-                {% for photo in recipe.photos %}
-                    <img src="{{ photo.image }}"/>
-                {% endfor %}
-
+            <div class="imgWrapper">
+                <div class="fotorama"
+                     data-width="600"
+                     data-height="400"
+                     data-nav="thumbs"
+                     data-autoplay="true">
+                    {% for photo in recipe.photos %}
+                        <img src="{{ photo.image }}"/>
+                    {% endfor %}
+                </div>
             </div>
 
             <div class="shortDescription">{{ recipe.shortDescription|raw }}</div>
+            <div class="clear"></div>
         </div>
         <div class="line">
             <span class="duration">Время приготовления: {{ recipe.duration }}</span>
